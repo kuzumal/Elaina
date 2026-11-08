@@ -391,8 +391,13 @@ if run_step "10"; then
     else
 	echo "Downloading CIRCT from nightly build"
 
+    printf 'CIRCT PREFIX=%s\n' "$PREFIX"
+    id
+    ls -ld "$PREFIX" "$PREFIX/share"
+
+
 	git submodule update --init $CYDIR/tools/install-circt &&
-	    $CYDIR/tools/install-circt/bin/download-release-or-nightly-circt.sh \
+	    $CYDIR/tools/ install-circt/bin/download-release-or-nightly-circt.sh \
 		-f circt-full-static-$CIRCT_ARCH.tar.gz \
 		-i $PREFIX \
 		-v version-file \
